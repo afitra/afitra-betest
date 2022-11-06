@@ -1,0 +1,14 @@
+run zookeepr
+    ./bin/zookeeper-server-start.sh config/zookeeper.properties 
+run kafka
+    ./bin/kafka-server-start.sh config/server.properties
+create topic
+    ./bin/kafka-topics.sh --create --bootstrap-server localhost:9092  --replication-factor 1 --partitions 1 --topic kafka_afitra_betest 
+cek list topik
+    ./bin/kafka-topics.sh --list --bootstrap-server localhost:9092 
+send message kafka
+    ./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic kafka_afitra_betest
+consume topic
+    bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic kafka_afitra_betest --from-beginning --group kafka_afitra_betest
+
+    --from-beginning unutk tampilkan semua data dari pertama di buat, jika di hilangkan akan tampilkan data sejak nyala
