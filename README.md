@@ -14,7 +14,7 @@
 
 #### Golang:
 
-    1. clone repository  https://github.com/afitra/tes-code_id.git
+    1. clone repository  https://github.com/afitra/afitra-betest.git
     2. masuk ke folder hasil clone
     3. cd destroyUserData; npm install; npm run start; cd ..
     4. cd gateWay; npm install; npm run start
