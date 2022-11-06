@@ -9,8 +9,7 @@ const {
 module.exports = {
   getAllUser: async (req, res, next) => {
     try {
-      const redis_key = "data_user";
-      const user_cache = await getRedisData(redis_key);
+      const user_cache = await getRedisData(process.env.REDIS_KEY);
       var data = "";
       var resource = "";
 

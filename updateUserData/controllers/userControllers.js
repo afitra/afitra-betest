@@ -24,8 +24,7 @@ module.exports = {
       data.password = password;
       await data.save();
 
-      // const redis_key="data_user"
-      // await destroyRedisData(redis_key)
+      await destroyRedisData(process.env.REDIS_KEY);
 
       res.status(200).json({
         status: "Success",

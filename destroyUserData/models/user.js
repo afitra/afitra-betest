@@ -8,7 +8,7 @@ const usersSchema = new mongoose.Schema({
     unique: true,
   },
   accountNumber: {
-    type: Number,
+    type: String,
     required: true,
     unique: true,
   },
@@ -18,7 +18,7 @@ const usersSchema = new mongoose.Schema({
     unique: true,
   },
   identityNumber: {
-    type: Number,
+    type: String,
     required: true,
     unique: true,
   },

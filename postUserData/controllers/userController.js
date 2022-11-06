@@ -28,7 +28,10 @@ module.exports = {
           let token = tokenGenerate(payload);
           res.status(200).json({ token });
         } else {
-          throw new Error("BROKEN");
+          res.status(400).json({
+            status: "error",
+            message: "email/pass not passed",
+          });
         }
       }
 
@@ -59,8 +62,7 @@ module.exports = {
         password,
       });
 
-      const redis_key = "data_user";
-      await destroyRedisData(redis_key);
+      await destroyRedisData(process.env.REDIS_KEY);
 
       res.status(201).json({
         status: "Success",

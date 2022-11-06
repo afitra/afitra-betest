@@ -1,12 +1,22 @@
-const RedisClient = require("redis").createClient;
+// const RedisClient = require("redis").createClient;
 
-const client = RedisClient(process.env.REDIS_PORT, process.env.REDIS_HOST);
+// const client = RedisClient(process.env.REDIS_PORT, process.env.REDIS_HOST);
+// async function connect() {
+//   await client.connect();
+//   client.on("error", (err) => console.log("Redis Client Error", err));
+// }
+// connect();
+const createClient = require("redis").createClient;
+
+const client = createClient({
+  url: process.env.REDIS_URI,
+});
 async function connect() {
-  await client.connect();
   client.on("error", (err) => console.log("Redis Client Error", err));
+  console.log("redis ++++++++");
+  await client.connect();
 }
 connect();
-
 /**
  * get redis cache
  * @param {string} redis_key
@@ -15,7 +25,7 @@ connect();
 module.exports = {
   async getRedisData(redis_key) {
     try {
-      return await client.get(redis_key);
+      return await client.get(process.env.REDIS_KEY);
     } catch (error) {
       return null;
     }

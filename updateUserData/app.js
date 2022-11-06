@@ -27,12 +27,7 @@ app.use(function (req, res, next) {
 
 const mongoose = require("mongoose");
 
-var dbUrl = null;
-if (process.env.ONLINE == "true") {
-  dbUrl = process.env.MONGO_SERVER_ON;
-} else {
-  dbUrl = process.env.MONGO_SERVER_OFF;
-}
+var dbUrl = process.env.MONGO_URI;
 
 mongoose
   .connect(dbUrl, {
@@ -47,8 +42,8 @@ mongoose
   .then(() => {
     console.log("************* mongoDB connnect");
   });
-
 mongoose.connection.on("error", (err) => {
+  mongoose.connect(dbUrl, { server: { auto_reconnect: true } });
   console.log(err);
 });
 

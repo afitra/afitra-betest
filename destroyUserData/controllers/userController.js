@@ -9,14 +9,13 @@ module.exports = {
     try {
       var user = await User.findByIdAndDelete({ _id: req.params.id });
 
-      const redis_key = "data_user";
       if (user == null) {
         res.status(404).json({
           status: "error",
           message: "user not found",
         });
       }
-      await destroyRedisData(redis_key);
+      await destroyRedisData(process.env.REDIS_KEY);
 
       res.status(200).json({
         status: "Success",
