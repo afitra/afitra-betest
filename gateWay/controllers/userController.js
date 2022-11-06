@@ -1,4 +1,5 @@
 const apiAdapter = require("../helpers/apiAdapter");
+
 const {
   URL_SERVICE_POST,
   URL_SERVICE_UPDATE,
@@ -13,7 +14,7 @@ module.exports = {
 
       const user = await api.post("/user/login", req.body);
 
-      res.status(202).json({
+      res.status(200).json({
         status: "Success",
         message: "Success",
         token: user.data.token,
@@ -32,7 +33,7 @@ module.exports = {
 
       const user = await api.post("/user", req.body);
 
-      res.status(202).json({
+      res.status(201).json({
         status: "Success",
         message: "Success",
         data: user.data.data,
@@ -56,6 +57,7 @@ module.exports = {
         status: "Success",
         message: "Success",
         data: user.data.data,
+        resource: user.data.resource,
       });
     } catch (error) {
       // res.status(500).send(`${error.response.data.message}`)
@@ -152,7 +154,7 @@ module.exports = {
       // api.defaults.headers.token= req.headers.token
       const user = await api.delete(`/user/${req.params.id}`);
 
-      res.status(202).json({
+      res.status(200).json({
         status: "Success",
         message: "Success",
         data: user.data.data,
